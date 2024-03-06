@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+
+
+
 <html lang="en">
    <head>
       <!-- basic -->
@@ -30,13 +32,31 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
    </head>
    <!-- body -->
-   <body class="main-layout inner_posituong contact_page">
+   <body class="main-layout inner_posituong computer_page">
       <!-- loader  -->
       
       <!-- end loader -->
       <!-- header -->
       <header>
          <!-- header inner -->
+         <?php
+        // Conectar a la base de datos
+        $servername = "localhost";
+        $username = "root";
+        $password = "password";
+        $dbname = "webasir";
+
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // Verificar la conexión
+        if ($conn->connect_error) {
+            die("Conexión fallida: " . $conn->connect_error);
+        }
+
+        // Consultar los datos
+        $sql = "SELECT * FROM clientes";
+        $result = $conn->query($sql);
+      ?>
          <div class="header">
             <div class="container-fluid">
                <div class="row">
@@ -59,8 +79,8 @@
                               <li class="nav-item">
                                  <a class="nav-link" href="index.html">Home</a>
                               </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="about.php">About</a>
+                              <li class="nav-item active">
+                                 <a class="nav-link" href="about.html">About</a>
                               </li>
                               <li class="nav-item">
                                  <a class="nav-link" href="servers.html">Servidores</a>
@@ -69,7 +89,7 @@
                                  <a class="nav-link" href="almacenamiento.html">Almacenamiento</a>
                               </li>
                               
-                              <li class="nav-item active">
+                              <li class="nav-item">
                                  <a class="nav-link" href="contact.html">Contacto</a>
                               </li>
                               <li class="nav-item d_none">
@@ -88,42 +108,47 @@
       </header>
       <!-- end header inner -->
       <!-- end header -->
-      <!--  contact -->
-      <div class="contact">
+      <!-- about section -->
+      <div class="about">
          <div class="container">
-            <div class="row">
-               <div class="col-md-12">
+            <div class="row d_flex">
+               <div class="col-md-5">
                   <div class="titlepage">
-                     <h2>Contacta Ahora</h2>
+                     <h2>About Us</h2>
+                     <p>Servidores y Almacenamiento ASIR es una empresa fundada en 2024 por <b>Vicente Valverde Villanueva.</b></p>
+                     <p>La empresa cuenta con una importante cartera de clientes que no para de crecer. Algunos de nuestros más importantes clientes son:</p>
+                     <?php
+                     // Mostrar los datos en la tabla
+                     if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()) {
+                           echo "<p><b>{$row['razon_social']}</b>
+                                 <br>{$row['descripcion']}</p>";
+                        }
+                     } else {
+                        echo "<tr><td colspan='8'>No hay datos disponibles</td></tr>";
+                     }
+
+                           // Cerrar la conexión
+                           $conn->close();
+                     ?>
+                     
+                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                     <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+
+                     <a class="read_more" href="#">Read More</a>
                   </div>
                </div>
-            </div>
-            <div class="row">
-               <div class="col-md-10 offset-md-1">
-                  <form id="request" class="main_form">
-                     <div class="row">
-                        <div class="col-md-12 ">
-                           <input class="contactus" placeholder="Name" type="type" name="Name"> 
-                        </div>
-                        <div class="col-md-12">
-                           <input class="contactus" placeholder="Email" type="type" name="Email"> 
-                        </div>
-                        <div class="col-md-12">
-                           <input class="contactus" placeholder="Phone Number" type="type" name="Phone Number">                          
-                        </div>
-                        <div class="col-md-12">
-                           <textarea class="textarea" placeholder="Message" type="type" Message="Name">Message </textarea>
-                        </div>
-                        <div class="col-md-12">
-                           <button class="send_btn">Send</button>
-                        </div>
-                     </div>
-                  </form>
+               <div class="col-md-7">
+                  <div class="about_img">
+                     <figure><img src="images/about.jpg" alt="#"/></figure>
+                  </div>
                </div>
             </div>
          </div>
       </div>
-      <!-- end contact -->
+      </div>
+      <!-- end about section -->
       <!--  footer -->
       <footer>
          <div class="footer">
