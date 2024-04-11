@@ -41,9 +41,9 @@
          <!-- header inner -->
          <?php
         // Conectar a la base de datos
-        $servername = "localhost";
-        $username = "root";
-        $password = "password";
+        $servername = "webasir.mysql.database.azure.com";
+        $username = "administrador";
+        $password = "qwe_123456789";
         $dbname = "webasir";
 
         $conn = new mysqli($servername, $username, $password, $dbname);
