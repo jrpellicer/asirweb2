@@ -22,31 +22,6 @@
     </style>
 </head>
 <body>
-
-    <h2>Tabla de Clientes</h2>
-    <?php
-    phpinfo();
-    ?>
-
-    <?php
-        // Conectar a la base de datos
-        $servername = "pon_tu_servidor";
-        $username = "administrador";
-        $password = "contraseña";
-        $dbname = "ventas";
-
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        // Verificar la conexión
-        if ($conn->connect_error) {
-            die("Conexión fallida: " . $conn->connect_error);
-        }
-
-        // Consultar los datos
-        $sql = "SELECT * FROM Clientes";
-        $result = $conn->query($sql);
-    ?>
-
     <table>
         <tr>
             <th>Número Cliente</th>
