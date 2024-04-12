@@ -24,6 +24,9 @@
 <body>
 
     <h2>Tabla de Clientes</h2>
+    <?php
+    phpinfo();
+    ?>
 
     <?php
         // Conectar a la base de datos
